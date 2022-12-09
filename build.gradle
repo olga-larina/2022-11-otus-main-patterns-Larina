@@ -1,0 +1,22 @@
+plugins {
+    id 'idea'
+}
+
+idea {
+    project {
+        languageLevel = 11
+    }
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+allprojects {
+    group "ru.otus"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
