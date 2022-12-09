@@ -1,8 +1,8 @@
 name: Java CI
 
 on:
-  push:
-    branches: [ main, homework-01 ]
+#   push:
+#     branches: [ main, homework-01 ]
   pull_request:
     branches: [ main ]
 
@@ -21,5 +21,5 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 7.4
-      - name: Execute Gradle build
+      - name: Execute Gradle build && test
         run: ./gradlew build
