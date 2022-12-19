@@ -1,2 +1,3 @@
 rootProject.name = '2022-11-otus-main-patterns-Larina'
 include 'hw01-unit-tests'
+include 'hw02-abstraction'
