@@ -26,7 +26,7 @@ class MovementTest {
         when(movable.getVelocity()).thenReturn(new Coords(-7, 3));
         movement.execute();
 
-        verify(movable, timeout(1)).setPosition(argThat(coords -> coords.getX() == 5 && coords.getY() == 8));
+        verify(movable, times(1)).setPosition(argThat(coords -> coords.getX() == 5 && coords.getY() == 8));
     }
 
     @DisplayName("Бросать исключение при попытке сдвинуть объект, у которого невозможно прочитать положение в пространстве")
