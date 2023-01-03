@@ -28,7 +28,7 @@ class RotateCommandTest {
         when(rotatable.getAngularVelocity()).thenReturn(20);
         rotateCommand.execute();
 
-        verify(rotatable, timeout(1)).setDirection(eq(120));
+        verify(rotatable, times(1)).setDirection(eq(120));
     }
 
     @DisplayName("Выполнять поворот на угол 50 при начальном положении 350 и угловой скорости 60")
@@ -39,7 +39,7 @@ class RotateCommandTest {
         when(rotatable.getAngularVelocity()).thenReturn(60);
         rotateCommand.execute();
 
-        verify(rotatable, timeout(1)).setDirection(eq(50));
+        verify(rotatable, times(1)).setDirection(eq(50));
     }
 
     @DisplayName("Бросать исключение при попытке повернуть объект с нулевым кол-вом направлений")

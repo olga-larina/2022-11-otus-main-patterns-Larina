@@ -28,7 +28,7 @@ class MoveCommandTest {
         when(movable.getVelocity()).thenReturn(new Coords(-7, 3));
         moveCommand.execute();
 
-        verify(movable, timeout(1)).setPosition(argThat(coords -> coords.getCoord(0) == 5 && coords.getCoord(1) == 8));
+        verify(movable, times(1)).setPosition(argThat(coords -> coords.getCoord(0) == 5 && coords.getCoord(1) == 8));
     }
 
     @DisplayName("Бросать исключение при попытке сдвинуть объект, у которого невозможно прочитать положение в пространстве")
