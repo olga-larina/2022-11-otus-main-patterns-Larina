@@ -1,22 +1,23 @@
-package ru.otus;
+package ru.otus.spacebattle.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.spacebattle.domain.Rotatable;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
-@DisplayName("Класс поворота Rotation должен")
-class RotationTest {
+@DisplayName("Класс поворота RotateCommand должен")
+class RotateCommandTest {
 
     private Rotatable rotatable;
-    private Rotation rotation;
+    private RotateCommand rotateCommand;
 
     @BeforeEach
     void setUp() {
         rotatable = mock(Rotatable.class);
-        rotation = new Rotation(rotatable);
+        rotateCommand = new RotateCommand(rotatable);
     }
 
     @DisplayName("Выполнять поворот на угол 120 при начальном положении 100 и угловой скорости 20")
@@ -25,7 +26,7 @@ class RotationTest {
         when(rotatable.getDirectionsNum()).thenReturn(360);
         when(rotatable.getDirection()).thenReturn(100);
         when(rotatable.getAngularVelocity()).thenReturn(20);
-        rotation.execute();
+        rotateCommand.execute();
 
         verify(rotatable, times(1)).setDirection(eq(120));
     }
@@ -36,7 +37,7 @@ class RotationTest {
         when(rotatable.getDirectionsNum()).thenReturn(360);
         when(rotatable.getDirection()).thenReturn(350);
         when(rotatable.getAngularVelocity()).thenReturn(60);
-        rotation.execute();
+        rotateCommand.execute();
 
         verify(rotatable, times(1)).setDirection(eq(50));
     }
@@ -48,7 +49,7 @@ class RotationTest {
         when(rotatable.getDirection()).thenReturn(100);
         when(rotatable.getAngularVelocity()).thenReturn(20);
         assertThatThrownBy(() -> {
-            rotation.execute();
+            rotateCommand.execute();
         }).isInstanceOf(IllegalStateException.class).hasMessageContaining("Directions num is zero");
     }
 
@@ -59,7 +60,7 @@ class RotationTest {
         when(rotatable.getDirection()).thenThrow(new RuntimeException("Can not get direction"));
         when(rotatable.getAngularVelocity()).thenReturn(20);
         assertThatThrownBy(() -> {
-            rotation.execute();
+            rotateCommand.execute();
         }).isInstanceOf(RuntimeException.class).hasMessageContaining("Can not get direction");
     }
 
@@ -70,7 +71,7 @@ class RotationTest {
         when(rotatable.getDirection()).thenReturn(100);
         when(rotatable.getAngularVelocity()).thenThrow(new RuntimeException("Can not get angular velocity"));
         assertThatThrownBy(() -> {
-            rotation.execute();
+            rotateCommand.execute();
         }).isInstanceOf(RuntimeException.class).hasMessageContaining("Can not get angular velocity");
     }
 
@@ -82,7 +83,7 @@ class RotationTest {
         when(rotatable.getAngularVelocity()).thenReturn(20);
         doThrow(new RuntimeException("Can not set direction")).when(rotatable).setDirection(anyInt());
         assertThatThrownBy(() -> {
-            rotation.execute();
+            rotateCommand.execute();
         }).isInstanceOf(RuntimeException.class).hasMessageContaining("Can not set direction");
     }
 }
