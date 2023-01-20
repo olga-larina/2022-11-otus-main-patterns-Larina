@@ -15,5 +15,5 @@ interface Scope {
     /**
      * Добавление зависимости
      */
-     boolean addDependency(String key, Function<Object[], Object> strategy);
+    boolean addDependency(String key, Function<Object[], Object> strategy);
 }
