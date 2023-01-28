@@ -6,7 +6,7 @@ import java.util.function.Function;
 
 /**
  * Команда по обработке очереди, которая прерывает обработку команд из очереди
- * Т.е. в качестве следующей null
+ * Т.е. в качестве следующей возвращает null
  */
 public class HardStopCommand implements Command {
     @Override
