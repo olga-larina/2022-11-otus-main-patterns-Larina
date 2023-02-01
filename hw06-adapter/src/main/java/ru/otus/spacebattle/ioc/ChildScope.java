@@ -26,7 +26,7 @@ class ChildScope implements Scope {
     }
 
     @Override
-    public boolean addDependency(String key, Function<Object[], Object> strategy) {
+    public synchronized boolean addDependency(String key, Function<Object[], Object> strategy) {
         dependencies.put(key, strategy);
         return true;
     }
