@@ -175,7 +175,7 @@ class BasicQueueHandlerTest {
         boolean invokedCommand1 = command1Invoked.await(2, TimeUnit.SECONDS);
         assertThat(invokedCommand1).isEqualTo(true);
 
-        // посылаем hard stop -> выполнение продолжается
+        // посылаем soft stop -> выполнение продолжается
         new SoftStopCommand().execute();
 
         // чтобы это проверить, добавляем новый command2 в очередь
@@ -190,7 +190,7 @@ class BasicQueueHandlerTest {
         }).when(command2).execute();
 
         // проверяем, что действительно продолжает выполняться
-        boolean invokedCommand2 = command1Invoked.await(2, TimeUnit.SECONDS);
+        boolean invokedCommand2 = command2Invoked.await(2, TimeUnit.SECONDS);
         assertThat(invokedCommand2).isEqualTo(true);
 
         // делаем очередь пустой, после чего выполнение прекращается
