@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    // Discover and execute JUnit Platform-based tests
+    useJUnitPlatform()
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+    // listen to events in the test execution lifecycle
+    beforeTest { descriptor ->
+        logger.lifecycle("Module " + project.name + " -> Running test: " + descriptor)
+    }
+    // listen to standard out and standard error of the test JVM(s)
+    onOutput { descriptor, event ->
+        logger.lifecycle("Module " + project.name + " -> Test: " + descriptor + " produced standard out/err: " + event.message )
+    }
+}
