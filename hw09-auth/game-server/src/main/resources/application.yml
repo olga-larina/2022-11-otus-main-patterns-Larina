@@ -1,0 +1,9 @@
+server:
+  port: 9001
+
+otus:
+  game:
+    auth:
+      uri: http://localhost:9000/auth/introspect
+      user: game
+      password: password
