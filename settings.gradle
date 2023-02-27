@@ -12,4 +12,5 @@ include 'hw09-auth:auth-server'
 findProject(':hw09-auth:auth-server')?.name = 'auth-server'
 include 'hw09-auth:game-server'
 findProject(':hw09-auth:game-server')?.name = 'game-server'
+include 'hw10-microservice'
 
